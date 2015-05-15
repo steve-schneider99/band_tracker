@@ -3,11 +3,8 @@ class Band < ActiveRecord::Base
   before_save(:capitalize_name)
   validates(:name, :presence => true)
 
-
-private
-
+  private
   define_method(:capitalize_name) do
     self.name=(name().capitalize())
   end
-
 end
