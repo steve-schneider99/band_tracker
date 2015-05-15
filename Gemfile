@@ -5,7 +5,5 @@ gem('rake')
 gem('pg')
 gem('sinatra')
 gem('pry')
-
-group(:test) do
-  gem('rspec')
-end
+gem('capybara')
+gem('rspec')

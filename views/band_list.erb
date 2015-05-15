@@ -13,5 +13,18 @@
   <input id="band_name" name="band_name" type="text">
   <button type="submit">add that band!</button>
 </form>
+
+<h3>Found a new venue but no band to play it yet? Add it here:</h3>
+
+<% if @new_venue == nil %>
+<% else %>
+  <p>You successfully added the <%= @new_venue.name %> venue!</p>
+<% end %>
+
+<form action="/add_venue" method="post">
+  <label for="venue_name">Enter the venue name:</label>
+  <input id="venue_name" name="venue_name" type="text">
+  <button type="submit">add that venue!</button>
+</form>
 <br>
 <a href="/">Go back to the home page</a>

@@ -4,6 +4,11 @@
 
 <h4><%= @band.name %> has rocked the following venues:</h4>
 
+<% if @venue == nil %>
+<% else %>
+  <p>You successfully added the venue <%= @venue.name %> to <%= @band.name %>!</p>
+<% end %>
+
 <ul>
   <% @band.venues.each do |venue| %>
     <li><%= venue.name %></li>
@@ -14,14 +19,23 @@
 
 <ul>
   <% @venues.each do |venue| %>
-    <% if venue.bands == [] %>
-      <li><%= venue.name %></li>
-    <% else %>
-    <% end %>
+      <% if venue.bands == [] %>
+        <li>
+          <%= venue.name %>
+          <ul><a href="/<%= venue.id %>/<%= @band.id %>/add_venue_band">Click here to have <%= @band.name %> play at <%= venue.name %>!</a></ul>
+        </li>
+      <% else %>
+      <% end %>
   <% end %>
 </ul>
 
-#add code here for submit form/links to add venues to this band.
+<p>Or maybe you found a cool new venue that <%= @band.name %> can play at someday?</p>
+
+<form action="/add_venue/<%= @band.id %>" method="post">
+  <label for="venue_name">Enter a new venue here:</label>
+  <input id="venue_name" name="venue_name" type="text">
+  <button type="submit">add that venue!</button>
+</form>
 
 <h4>Was this band only going through a phase? Change the name of the band below:</h4>
 
@@ -32,7 +46,7 @@
   <button type="submit">Update this band</button>
 </form>
 
-<h4>Is the band breaking up?!? If they must go their separate ways...</h4>
+<h4>Is <%= @band.name %> breaking up?!? If they must go their separate ways...</h4>
 
 <form action='/band/<%= @band.id %>/delete' method="post">
   <input name="_method" type="hidden" value="delete">
