@@ -1,1 +1,40 @@
-<h3>DUDE! <%= @band.name.upcase %>?! I LOVE THEM TOO!</h3>
+<h2>DUDE! <%= @band.name.upcase %>?! I LOVE THEM TOO!</h2>
+
+<a href="/bands">Go back to the list of bands that ROCK!</a>
+
+<h4><%= @band.name %> has rocked the following venues:</h4>
+
+<ul>
+  <% @band.venues.each do |venue| %>
+    <li><%= venue.name %></li>
+  <% end %>
+</ul>
+
+<h4>You know what would be REALLY cool though? If <%= @band.name %> played at one of these venues:</h4>
+
+<ul>
+  <% @venues.each do |venue| %>
+    <% if venue.bands == [] %>
+      <li><%= venue.name %></li>
+    <% else %>
+    <% end %>
+  <% end %>
+</ul>
+
+#add code here for submit form/links to add venues to this band.
+
+<h4>Was this band only going through a phase? Change the name of the band below:</h4>
+
+<form action='/band/<%= @band.id %>/edit' method='post'>
+  <input name="_method" type="hidden" value="patch">
+  <label for "name">Rename this band:</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Update this band</button>
+</form>
+
+<h4>Is the band breaking up?!? If they must go their separate ways...</h4>
+
+<form action='/band/<%= @band.id %>/delete' method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete this band :(</button>
+</form>
