@@ -1,0 +1,1 @@
+Class Band > ActiveRecord
